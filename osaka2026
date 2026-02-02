@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Osaka Marathon 2026 - 應援行程</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --osaka-blue: #87CEEB; /* 圖片中的天空藍 */
+            --soft-white: #FFFFFF;
+            --page-bg: #FFFFFF; /* 依圖片底色延伸 */
+        }
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--page-bg);
+            margin: 0;
+            padding-bottom: 20px;
+        }
+        /* 頁首 Banner 容器 */
+        .banner-container {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--osaka-blue);
+        }
+        .banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        /* 圓弧銜接視覺效果 */
+        .main-content {
+            margin-top: -40px;
+            border-radius: 40px 40px 0 0;
+            background-color: var(--soft-white);
+            position: relative;
+            z-index: 10;
+            padding: 25px 20px;
+            min-height: 80vh;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+        }
+        /* 橫向滑動日期選單 */
+        .date-slider::-webkit-scrollbar { display: none; }
+        .date-card.active {
+            background-color: #005CAF;
+            color: white;
+            transform: scale(1.05);
+        }
+        /* 行程卡片樣式 */
+        .itinerary-card {
+            border: 2px solid #333;
+            border-radius: 18px;
+            box-shadow: 4px 4px 0px 0px #333;
+            transition: all 0.2s;
+        }
+        .itinerary-card:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px 0px #333; }
+        /* 浮動按鈕 */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background: #005CAF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,92,175,0.4);
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <header class="banner-container">
+        <img src="Gemini_Generated_Image_bjzo0jbjzo0jbjzo.png" alt="Osaka Trip Banner" class="banner-img">
+        
+        <div class="absolute bottom-12 right-4 flex space-x-2">
+            <button @click="currentTab = 'itinerary'" :class="tabClass('itinerary')">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+            </button>
+            <button @click="currentTab = 'info'" :class="tabClass('info')">
+                <i data-lucide="info" class="w-5 h-5"></i>
+            </button>
+            <button @click="currentTab = 'shopping'" :class="tabClass('shopping')">
+                <i data-lucide="shopping-basket" class="w-5 h-5"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content
